@@ -1,36 +1,10 @@
 import React, { createContext, useContext, useReducer, useEffect, useMemo, useRef } from 'react';
 import { loadCart, saveCart, CART_STORAGE_KEY } from '../utils/cartStorage';
+import { cartReducer } from '../utils/cartReducer';
 import { useToast } from './ToastContext';
 
+export { cartReducer };
 const CartContext = createContext(null);
-
-const MAX_QTY = 10;
-const clamp = (n) => Math.min(MAX_QTY, Math.max(1, n));
-
-export function cartReducer(state, action) {
-  switch (action.type) {
-    case 'ADD':
-      return {
-        ...state,
-        [action.id]: clamp((state[action.id] ?? 0) + (action.qty ?? 1)),
-      };
-    case 'SET_QTY':
-      return {
-        ...state,
-        [action.id]: clamp(action.qty),
-      };
-    case 'REMOVE': {
-      const { [action.id]: _, ...rest } = state;
-      return rest;
-    }
-    case 'CLEAR':
-      return {};
-    case 'HYDRATE':
-      return action.state || {};
-    default:
-      return state;
-  }
-}
 
 export function CartProvider({ children }) {
   const [cart, dispatch] = useReducer(cartReducer, undefined, loadCart);
