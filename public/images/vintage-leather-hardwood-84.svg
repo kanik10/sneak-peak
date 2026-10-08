@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 340" width="100%" height="100%">
+  <defs>
+    <!-- Paper texture & subtle gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#faf5ec" />
+      <stop offset="100%" stop-color="#f0e7d5" />
+    </linearGradient>
+    <radialGradient id="shadowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1d1b18" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#1d1b18" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="dotGrid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#d9d0bf" fill-opacity="0.6"/>
+    </pattern>
+  </defs>
+
+  <!-- Card background with paper grain grid -->
+  <rect width="100%" height="100%" fill="url(#bgGrad)" rx="12"/>
+  <rect width="100%" height="100%" fill="url(#dotGrid)" rx="12"/>
+
+  
+    <!-- Archival registration marks -->
+    <circle cx="435" cy="45" r="7" fill="none" stroke="#6b645a" stroke-width="1"/>
+    <line x1="435" y1="34" x2="435" y2="56" stroke="#6b645a" stroke-width="1"/>
+    <line x1="424" y1="45" x2="446" y2="45" stroke="#6b645a" stroke-width="1"/>
+    <!-- Stamp code -->
+    <text x="35" y="45" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#6b645a" letter-spacing="1">ED. VINTAGE-LE</text>
+    <text x="35" y="60" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#6b645a">ART NO. 09 // SNEAK PEAK ARCHIVE</text>
+  
+
+  <!-- Ground drop shadow -->
+  <ellipse cx="250" cy="296" rx="190" ry="16" fill="url(#shadowGrad)"/>
+
+  <!-- Sneaker graphics -->
+  <g id="sneaker-model" transform="translate(0, 5)">
+    
+      <path d="M 75 252 C 72 190, 105 165, 145 165 C 170 165, 195 175, 215 190 L 275 200 C 345 205, 395 218, 425 252 Z" fill="#fcf9f2" stroke="#1d1b18" stroke-width="3.5" stroke-linejoin="round"/>
+    
+    
+      <!-- Retro mudguard & leather star/chevron/swoosh -->
+      <path d="M 320 252 C 320 220, 365 210, 425 235 L 425 252 Z" fill="#ea580c" fill-opacity="0.18" stroke="#1d1b18" stroke-width="2"/>
+      <path d="M 125 170 L 125 240" stroke="#1d1b18" stroke-width="2.5" stroke-dasharray="4 2"/>
+      <path d="M 155 210 C 220 200, 270 215, 310 248 C 265 240, 210 230, 160 245 Z" fill="#ea580c" stroke="#1d1b18" stroke-width="2"/>
+    
+    
+      <path d="M 60 252 L 425 252 C 430 262, 425 278, 400 282 L 80 282 C 60 282, 55 268, 60 252 Z" fill="#ece5d5" stroke="#1d1b18" stroke-width="3"/>
+      <line x1="60" y1="262" x2="425" y2="262" stroke="#1d1b18" stroke-width="1.5" stroke-dasharray="2 2"/>
+      <path d="M 380 252 C 410 255, 420 270, 410 280" fill="none" stroke="#ea580c" stroke-width="3"/>
+    
+    
+      <path d="M 175 172 L 195 186" stroke="#1d1b18" stroke-width="2.5"/>
+      <path d="M 195 186 L 220 197" stroke="#1d1b18" stroke-width="2.5"/>
+      <path d="M 220 197 L 250 204" stroke="#1d1b18" stroke-width="2.5"/>
+    
+  </g>
+
+  <!-- Aesthetic technical border -->
+  <rect x="12" y="12" width="476" height="316" rx="8" fill="none" stroke="#d9d0bf" stroke-width="1.5" stroke-dasharray="6 4"/>
+</svg>

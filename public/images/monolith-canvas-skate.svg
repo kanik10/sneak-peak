@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 340" width="100%" height="100%">
+  <defs>
+    <!-- Paper texture & subtle gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#faf5ec" />
+      <stop offset="100%" stop-color="#f0e7d5" />
+    </linearGradient>
+    <radialGradient id="shadowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1d1b18" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#1d1b18" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="dotGrid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#d9d0bf" fill-opacity="0.6"/>
+    </pattern>
+  </defs>
+
+  <!-- Card background with paper grain grid -->
+  <rect width="100%" height="100%" fill="url(#bgGrad)" rx="12"/>
+  <rect width="100%" height="100%" fill="url(#dotGrid)" rx="12"/>
+
+  
+    <!-- Archival registration marks -->
+    <circle cx="435" cy="45" r="7" fill="none" stroke="#6b645a" stroke-width="1"/>
+    <line x1="435" y1="34" x2="435" y2="56" stroke="#6b645a" stroke-width="1"/>
+    <line x1="424" y1="45" x2="446" y2="45" stroke="#6b645a" stroke-width="1"/>
+    <!-- Stamp code -->
+    <text x="35" y="45" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#6b645a" letter-spacing="1">ED. MONOLITH-C</text>
+    <text x="35" y="60" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#6b645a">ART NO. 015 // SNEAK PEAK ARCHIVE</text>
+  
+
+  <!-- Ground drop shadow -->
+  <ellipse cx="250" cy="296" rx="190" ry="16" fill="url(#shadowGrad)"/>
+
+  <!-- Sneaker graphics -->
+  <g id="sneaker-model" transform="translate(0, 5)">
+    
+      <path d="M 75 248 C 70 205, 95 180, 135 180 C 160 180, 185 185, 205 195 L 285 205 C 345 208, 395 218, 425 248 Z" fill="#faf7f0" stroke="#1d1b18" stroke-width="3.5"/>
+    
+    
+      <!-- Ollie patch & side wave -->
+      <path d="M 260 248 C 265 220, 310 220, 340 248 Z" fill="#4b5563" fill-opacity="0.3" stroke="#1d1b18" stroke-width="2"/>
+      <path d="M 125 185 C 160 215, 240 220, 320 245" stroke="#1d1b18" stroke-width="2.5" fill="none"/>
+      <!-- Metal eyelets -->
+      <circle cx="170" cy="192" r="3" fill="#ffffff" stroke="#1d1b18" stroke-width="2"/>
+      <circle cx="195" cy="196" r="3" fill="#ffffff" stroke="#1d1b18" stroke-width="2"/>
+      <circle cx="220" cy="201" r="3" fill="#ffffff" stroke="#1d1b18" stroke-width="2"/>
+    
+    
+      <path d="M 65 248 L 420 248 C 430 248, 435 258, 430 270 C 425 280, 410 282, 380 282 L 80 282 C 65 282, 60 272, 65 248 Z" fill="#f4eee1" stroke="#1d1b18" stroke-width="3"/>
+      <rect x="70" y="248" width="355" height="6" fill="#4b5563"/>
+      <path d="M 68 280 L 420 280" stroke="#1d1b18" stroke-width="3"/>
+    
+    
+      <path d="M 168 190 L 195 194" stroke="#1d1b18" stroke-width="2.5"/>
+      <path d="M 193 194 L 220 199" stroke="#1d1b18" stroke-width="2.5"/>
+    
+  </g>
+
+  <!-- Aesthetic technical border -->
+  <rect x="12" y="12" width="476" height="316" rx="8" fill="none" stroke="#d9d0bf" stroke-width="1.5" stroke-dasharray="6 4"/>
+</svg>
