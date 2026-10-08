@@ -12,6 +12,10 @@ Designed with a warm tactile **"paper store"** aesthetic—featuring warm paper 
 |---|---|---|
 | **URL-Synced Filters** | `useProductFilters.js` + `useDebounce.js` | Filters (`?q=`, `?cat=`, `?sort=`) sync two-way with the URL; search input is locally responsive and debounced into query parameters. |
 | **Monospace Receipt Cart** | `Receipt.jsx` + `CartLine.jsx` | Full receipt styling with sawtooth perforated tear edges, integer currency calculations, subtotal/tax ledger, and vector barcodes. |
+| **Announcement Ticker** | `AnnouncementBar.jsx` | Top promotional ticker inspired by Adidas with cycling archival notices and worldwide shipping terms. |
+| **Editorial Hero Showcase** | `HeroSection.jsx` | High-impact bold display typography ("BORN IN THE STREETS. RECORDED ON PAPER."), signature block action buttons, spotlight lot, and 3-stripe archival ribbon paper motif. |
+| **"Popular Right Now" Strip** | `TrendingStrip.jsx` | Quick-navigation tags bar inspired by Adidas's trending strip for one-click catalog search and filtering. |
+| **Drop Spotlight Stories** | `FeaturedStories.jsx` | 3-column curated editorial campaign tiles (Blueprint Series, Vibram Tech, Hardwood '84) with hover zooms and action links. |
 | **Undo on Remove** | `CartContext.jsx` + `ToastViewport.jsx` | Decrementing at quantity 1 or clicking "remove" dispatches `REMOVE` and presents a toast notification with an interactive **Undo** button. |
 | **Command Palette** | `CommandPalette.jsx` + `useHotkey.js` | Accessible search dialog with `role="dialog"` and `role="listbox"`, opened with <kbd>Ctrl+K</kbd> / <kbd>⌘K</kbd>, navigable with arrow keys & <kbd>Enter</kbd>. |
 | **Cross-Tab Sync** | `CartContext.jsx` + `storage` event | Listens to `window.addEventListener('storage')` to seamlessly synchronize cart changes across multiple open browser tabs. |
