@@ -1,7 +1,20 @@
-.listing-hero {
-  margin-bottom: 2rem;
-  padding: 2rem 0 1.5rem;
-  border-bottom: 1px solid var(--line);
+.catalog-section {
+  padding-top: 1.5rem;
+}
+
+.listing-catalog-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--ink);
+  flex-wrap: wrap;
+}
+
+.catalog-header-text {
+  max-width: 650px;
 }
 
 .listing-hero-badge {
@@ -16,24 +29,45 @@
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-sm);
   color: var(--accent);
-  margin-bottom: 0.75rem;
-}
-
-.listing-hero-title {
-  font-family: var(--font-display);
-  font-size: 2.25rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  line-height: 1.15;
-  color: var(--ink);
   margin-bottom: 0.5rem;
 }
 
-.listing-hero-sub {
-  font-size: 1rem;
+.listing-catalog-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+}
+
+.listing-catalog-sub {
+  font-size: 0.95rem;
   color: var(--muted);
-  max-width: 650px;
-  line-height: 1.6;
+  line-height: 1.5;
+}
+
+.clear-all-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.95rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.clear-all-pill-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .filter-bar-desktop {
@@ -61,8 +95,14 @@
   gap: 1rem;
 }
 
-.mobile-filter-trigger {
+.mobile-search-filter-row {
   display: none;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.mobile-filter-trigger {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -74,8 +114,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--ink);
-  width: 100%;
-  margin-bottom: 1.25rem;
+  white-space: nowrap;
 }
 
 .archive-stats-bar {
@@ -94,7 +133,7 @@
   .filter-bar-desktop {
     display: none;
   }
-  .mobile-filter-trigger {
+  .mobile-search-filter-row {
     display: flex;
   }
 }

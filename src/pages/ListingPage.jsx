@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef } from 'react';
 import { useProducts } from '../context/ProductsContext';
 import { useProductFilters } from '../hooks/useProductFilters';
 import { filterProducts } from '../utils/filterProducts';
@@ -10,12 +10,16 @@ import { FilterSheet } from '../components/filters/FilterSheet';
 import { EmptyState } from '../components/feedback/EmptyState';
 import { ErrorState } from '../components/feedback/ErrorState';
 import { RecentlyViewed } from '../components/product/RecentlyViewed';
+import { HeroSection } from '../components/home/HeroSection';
+import { TrendingStrip } from '../components/home/TrendingStrip';
+import { FeaturedStories } from '../components/home/FeaturedStories';
 import './ListingPage.css';
 
 export function ListingPage() {
   const { products, status, error, retry } = useProducts();
   const { filters, update, clear } = useProductFilters();
   const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false);
+  const catalogRef = useRef(null);
 
   // Filtered and sorted products using the pure utility function
   const filteredProducts = useMemo(() => {
@@ -31,6 +35,15 @@ export function ListingPage() {
     return counts;
   }, [products]);
 
+  const scrollToCatalog = () => {
+    catalogRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleSelectTrendingTag = (query) => {
+    update({ q: query });
+    scrollToCatalog();
+  };
+
   if (status === 'error') {
     return (
       <div className="container">
@@ -40,87 +53,123 @@ export function ListingPage() {
   }
 
   const isLoading = status === 'loading';
+  const hasActiveFilters = Boolean(filters.q || (filters.cat && filters.cat !== 'all') || (filters.sort && filters.sort !== 'featured'));
 
   return (
     <div className="container">
-      <header className="listing-hero">
-        <span className="listing-hero-badge">ARCHIVE COLLECTION '77—'26</span>
-        <h1 className="listing-hero-title">Curated Footwear Silhouettes</h1>
-        <p className="listing-hero-sub">
-          Archived sneakers categorized by craft construction, paper-fiber weave, and technical soles.
-          Every piece serialized with authentic provenance.
-        </p>
-      </header>
+      {/* Adidas-inspired Start of Page: Hero Section */}
+      <HeroSection
+        featuredProduct={products[0]}
+        onExploreClick={scrollToCatalog}
+      />
 
-      {/* Desktop Filter Bar */}
-      <div className="filter-bar-desktop">
-        <div className="filter-bar-row-top">
-          <SearchBar
-            value={filters.q}
-            onChange={(val) => update({ q: val })}
-          />
-        </div>
-        <div className="filter-bar-row-bottom">
-          <CategoryChips
-            activeCategory={filters.cat}
-            onSelect={(cat) => update({ cat })}
-            counts={categoryCounts}
-          />
-          <SortSelect
-            value={filters.sort}
-            onChange={(sort) => update({ sort })}
-          />
-        </div>
-      </div>
+      {/* Adidas-inspired "Popular Right Now" Trending Strip */}
+      <TrendingStrip onSelectTag={handleSelectTrendingTag} />
 
-      {/* Mobile Filter Trigger */}
-      <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1rem' }}>
-        <div style={{ flex: 1 }}>
-          <SearchBar
-            value={filters.q}
-            onChange={(val) => update({ q: val })}
-          />
-        </div>
-        <button
-          type="button"
-          className="mobile-filter-trigger"
-          style={{ width: 'auto' }}
-          onClick={() => setIsFilterSheetOpen(true)}
-          aria-label="Open filter options"
-        >
-          <span>⚙️</span>
-          <span>Filters</span>
-        </button>
-      </div>
+      {/* Adidas-inspired "What's Hot / Archive Drops" Editorial Stories */}
+      <FeaturedStories />
 
-      {/* Stats bar */}
-      <div className="archive-stats-bar">
-        <span>
-          {isLoading ? 'Reading archive ledger...' : `Displaying ${filteredProducts.length} of ${products.length} models`}
-        </span>
-        {(filters.q || filters.cat !== 'all') && (
+      {/* Catalog & Filter Section */}
+      <section
+        id="archive-catalog"
+        ref={catalogRef}
+        className="catalog-section"
+        aria-label="Sneaker catalog"
+      >
+        <header className="listing-catalog-header">
+          <div className="catalog-header-text">
+            <span className="listing-hero-badge">CATALOG // '77—'26</span>
+            <h2 className="listing-catalog-title">THE ARCHIVE DIRECTORY</h2>
+            <p className="listing-catalog-sub">
+              Browse complete serialized silhouettes. Filter by category, technical sole, or keyword.
+            </p>
+          </div>
+
+          {hasActiveFilters && (
+            <button
+              type="button"
+              className="clear-all-pill-btn"
+              onClick={clear}
+              title="Reset all active filters"
+            >
+              <span>✕</span> Reset Active Filters
+            </button>
+          )}
+        </header>
+
+        {/* Desktop Filter Bar */}
+        <div className="filter-bar-desktop">
+          <div className="filter-bar-row-top">
+            <SearchBar
+              value={filters.q}
+              onChange={(val) => update({ q: val })}
+              placeholder="Filter archive by silhouette, washi fiber, Vibram, or model..."
+            />
+          </div>
+          <div className="filter-bar-row-bottom">
+            <CategoryChips
+              activeCategory={filters.cat}
+              onSelect={(cat) => update({ cat })}
+              counts={categoryCounts}
+            />
+            <SortSelect
+              value={filters.sort}
+              onChange={(sort) => update({ sort })}
+            />
+          </div>
+        </div>
+
+        {/* Mobile Filter Trigger */}
+        <div className="mobile-search-filter-row">
+          <div style={{ flex: 1 }}>
+            <SearchBar
+              value={filters.q}
+              onChange={(val) => update({ q: val })}
+              placeholder="Search sneakers..."
+            />
+          </div>
           <button
             type="button"
-            onClick={clear}
-            style={{ textDecoration: 'underline', cursor: 'pointer' }}
+            className="mobile-filter-trigger"
+            onClick={() => setIsFilterSheetOpen(true)}
+            aria-label="Open filter options"
           >
-            Clear filters
+            <span>⚙️</span>
+            <span>Filters</span>
           </button>
-        )}
-      </div>
+        </div>
 
-      {/* Products Grid or Empty State */}
-      {isLoading ? (
-        <ProductGrid isLoading={true} skeletonCount={8} />
-      ) : filteredProducts.length === 0 ? (
-        <EmptyState
-          filters={filters}
-          onClearFilters={clear}
-          onSelectCategory={(cat) => update({ cat })}
-        />
-      ) : (
-        <ProductGrid products={filteredProducts} />
-      )}
+        {/* Stats bar */}
+        <div className="archive-stats-bar">
+          <span>
+            {isLoading
+              ? 'Reading archive ledger...'
+              : `Showing ${filteredProducts.length} of ${products.length} models`}
+          </span>
+          {hasActiveFilters && (
+            <button
+              type="button"
+              onClick={clear}
+              style={{ textDecoration: 'underline', cursor: 'pointer' }}
+            >
+              Clear filters
+            </button>
+          )}
+        </div>
+
+        {/* Products Grid or Empty State */}
+        {isLoading ? (
+          <ProductGrid isLoading={true} skeletonCount={8} />
+        ) : filteredProducts.length === 0 ? (
+          <EmptyState
+            filters={filters}
+            onClearFilters={clear}
+            onSelectCategory={(cat) => update({ cat })}
+          />
+        ) : (
+          <ProductGrid products={filteredProducts} />
+        )}
+      </section>
 
       {/* Recently Viewed Drawer */}
       <RecentlyViewed />
