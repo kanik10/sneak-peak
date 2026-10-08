@@ -1,0 +1,24 @@
+.rating-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.rating-stars-icons {
+  color: #d97706; /* warm amber ink */
+  font-size: 0.85rem;
+  letter-spacing: -1px;
+}
+
+.rating-score {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.rating-count {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
