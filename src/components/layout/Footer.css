@@ -42,7 +42,7 @@
 }
 
 .footer-links-list a:hover {
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .footer-testing-chip {
@@ -58,8 +58,8 @@
 }
 
 .footer-testing-chip:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
 .footer-bottom {
@@ -75,7 +75,7 @@
 }
 
 .footer-stamp {
-  color: var(--accent);
+  color: var(--ink);
   font-weight: 700;
   letter-spacing: 0.5px;
 }

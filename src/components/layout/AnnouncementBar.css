@@ -36,7 +36,8 @@
 }
 
 .announcement-text a:hover {
-  color: var(--accent);
+  color: var(--paper);
+  text-decoration: none;
 }
 
 .announcement-nav-btn {

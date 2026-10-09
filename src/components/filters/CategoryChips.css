@@ -48,6 +48,6 @@
 }
 
 .category-chip-btn.active .category-chip-badge {
-  background: var(--accent);
-  color: #fff;
+  background: var(--ink);
+  color: var(--paper);
 }

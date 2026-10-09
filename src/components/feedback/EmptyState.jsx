@@ -1,5 +1,6 @@
 import React from 'react';
 import { useProducts } from '../../context/ProductsContext';
+import { Icon } from '../Icon';
 import './EmptyState.css';
 
 export function EmptyState({ filters = {}, onClearFilters, onSelectCategory }) {
@@ -29,7 +30,7 @@ export function EmptyState({ filters = {}, onClearFilters, onSelectCategory }) {
 
   return (
     <div className="empty-state" role="status">
-      <div className="empty-state-icon">🏷️</div>
+      <div className="empty-state-icon"><Icon name="tag" size={42} /></div>
       <h2 className="empty-state-title">No Sneakers Matched</h2>
       <p className="empty-state-desc">
         We checked our paper archives, but couldn't find any silhouettes matching your criteria.

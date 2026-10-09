@@ -1,126 +1,400 @@
-.adidas-hero {
+/* ============================================================
+   HERO FULLSCREEN — Adidas-inspired, paper-store aesthetic
+   ============================================================ */
+
+.hero-fullscreen {
   position: relative;
-  background: var(--card);
-  border: 2px solid var(--line);
-  border-radius: var(--radius-lg);
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  max-height: 900px;
   overflow: hidden;
-  margin: 1.5rem 0 2rem;
-  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: flex-end;
+  background: var(--ink);
 }
 
-/* Background diagonal paper ribbons (Nod to Adidas 3-Stripes in paper aesthetic) */
-.hero-stripes-bg {
+/* ── Background layers ── */
+.hero-bg-wrap {
   position: absolute;
-  top: -20%;
-  right: 5%;
-  width: 500px;
-  height: 140%;
-  pointer-events: none;
-  opacity: 0.12;
-  display: flex;
-  gap: 24px;
-  transform: rotate(-18deg);
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 6s ease-out;
+  transform: scale(1.06);
+}
+
+.hero-bg-img.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Gradient overlay — heavier at bottom for legibility */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.1) 30%,
+    rgba(0, 0, 0, 0.55) 70%,
+    rgba(0, 0, 0, 0.82) 100%
+  );
   z-index: 1;
 }
 
-[data-theme="dark"] .hero-stripes-bg {
-  opacity: 0.08;
-}
-
-.hero-stripe {
-  flex: 1;
-  background: repeating-linear-gradient(
-    45deg,
-    var(--ink),
-    var(--ink) 10px,
-    transparent 10px,
-    transparent 20px
-  );
-  border-left: 3px dashed var(--ink);
-  border-right: 3px dashed var(--ink);
-}
-
-.hero-content-grid {
-  position: relative;
+/* Paper grain noise texture */
+.hero-grain {
+  position: absolute;
+  inset: 0;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  gap: 2rem;
-  padding: 3rem 2rem;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 180px;
+  pointer-events: none;
 }
 
-@media (min-width: 960px) {
-  .hero-content-grid {
-    grid-template-columns: 1.15fr 0.85fr;
-    padding: 4rem 3.5rem;
-    gap: 3.5rem;
-  }
+/* ── Fade animation for content ── */
+.hero-content-exit .hero-inner {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.hero-kicker-wrap {
+.hero-content-enter .hero-inner {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+}
+
+/* ── Content positioning ── */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 0 0 6rem;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* ── Kicker row ── */
+.hero-kicker-row {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-bottom: 1.25rem;
 }
 
 .hero-kicker-badge {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 0.25rem 0.6rem;
-  border-radius: var(--radius-sm);
+  background: #ffffff;
+  color: #1d1b18;
+  padding: 0.28rem 0.75rem;
+  border-radius: 2px;
 }
 
-.hero-kicker-text {
+.hero-kicker-line {
+  display: block;
+  flex: 0 0 40px;
+  height: 1.5px;
+  background: rgba(255,255,255,0.4);
+}
+
+.hero-kicker-sub {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
 }
 
-.hero-headline {
+/* ── Main headline ── */
+.hero-main-headline {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
   font-weight: 900;
-  line-height: 0.98;
-  letter-spacing: -1.5px;
+  line-height: 0.93;
+  letter-spacing: -3px;
   text-transform: uppercase;
-  color: var(--ink);
-  margin-bottom: 1.25rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.hero-headline .headline-line {
+.hero-headline-line {
   display: block;
 }
 
-.hero-headline .headline-accent {
-  color: var(--accent);
+.hero-headline-line.accent {
+  color: #ffffff;
   font-style: italic;
+  -webkit-text-stroke: 0;
 }
 
-.hero-desc {
+/* ── Subtext ── */
+.hero-subtext {
   font-size: 1.05rem;
   line-height: 1.6;
-  color: var(--muted);
-  max-width: 520px;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 500px;
   margin-bottom: 2rem;
+  font-weight: 400;
 }
 
-/* Adidas Signature Block Action Buttons */
-.hero-cta-group {
+/* ── CTA buttons ── */
+.hero-cta-row {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 1rem;
 }
 
+.hero-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  color: #1d1b18;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 1rem 2rem;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  text-decoration: none;
+}
+
+.hero-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.85);
+  color: #1d1b18;
+  transform: translateY(-2px);
+}
+
+.hero-btn-arrow {
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+}
+
+.hero-btn-primary:hover .hero-btn-arrow {
+  transform: translateX(4px);
+}
+
+.hero-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 0.95rem 1.75rem;
+  border-radius: 3px;
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+
+.hero-btn-ghost:hover {
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Controls bar at bottom right ── */
+.hero-controls {
+  position: absolute;
+  bottom: 2rem;
+  right: 2.5rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.hero-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hero-dot {
+  width: 28px;
+  height: 2.5px;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 0;
+  transition: background 0.3s, width 0.3s;
+}
+
+.hero-dot.active {
+  background: #fff;
+  width: 48px;
+}
+
+.hero-counter {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 1px;
+}
+
+.hero-next-btn {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.hero-next-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: #fff;
+  transform: translateX(3px);
+}
+
+/* ── Scroll hint ── */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 2.5rem;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.hero-scroll-hint:hover {
+  opacity: 1;
+}
+
+.hero-scroll-text {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+.hero-scroll-arrow {
+  color: #fff;
+  font-size: 1rem;
+  animation: scrollBounce 1.8s infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ── Adidas-style 3-stripe left accent bar ── */
+.hero-fullscreen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ffffff 0px,
+    #ffffff 33.33%,
+    transparent 33.33%,
+    transparent 66.66%,
+    #ffffff 66.66%,
+    #ffffff 100%
+  );
+  z-index: 30;
+  opacity: 0.9;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero-fullscreen {
+    max-height: 700px;
+  }
+
+  .hero-main-headline {
+    font-size: clamp(2.8rem, 12vw, 5rem);
+    letter-spacing: -1.5px;
+  }
+
+  .hero-inner {
+    padding: 0 1.5rem;
+  }
+
+  .hero-content {
+    padding: 0 0 5rem;
+  }
+
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-btn-primary,
+  .hero-btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-scroll-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-main-headline {
+    letter-spacing: -1px;
+  }
+
+  .hero-kicker-line,
+  .hero-kicker-sub {
+    display: none;
+  }
+}
+
+/* ── Keep the old adidas-btn classes used elsewhere ── */
 .adidas-btn-primary {
   display: inline-flex;
   align-items: center;
@@ -136,11 +410,14 @@
   border-radius: var(--radius-sm);
   transition: all var(--transition-fast);
   box-shadow: var(--shadow-sm);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .adidas-btn-primary:hover {
-  background: var(--accent);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--paper);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -160,85 +437,11 @@
   padding: 0.95rem 1.75rem;
   border-radius: var(--radius-sm);
   transition: all var(--transition-fast);
+  text-decoration: none;
 }
 
 .adidas-btn-secondary:hover {
   background: var(--ink);
   color: var(--paper);
   transform: translateY(-2px);
-}
-
-/* Featured Sneaker Card on the right of the Hero */
-.hero-showcase-box {
-  background: var(--paper);
-  border: 1.5px solid var(--line);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  position: relative;
-  box-shadow: var(--shadow-md);
-  transition: transform var(--transition-normal);
-}
-
-.hero-showcase-box:hover {
-  transform: translateY(-3px);
-  border-color: var(--ink);
-}
-
-.hero-showcase-tag {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-}
-
-.hero-showcase-img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: var(--radius-sm);
-  background: var(--paper-subtle);
-  transition: transform 0.3s ease;
-}
-
-.hero-showcase-box:hover .hero-showcase-img {
-  transform: scale(1.03) rotate(-1deg);
-}
-
-.hero-showcase-footer {
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.hero-showcase-name {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.05rem;
-  color: var(--ink);
-  margin-bottom: 0.2rem;
-}
-
-.hero-showcase-price {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--accent);
-}
-
-@media (max-width: 640px) {
-  .hero-content-grid {
-    padding: 2rem 1.25rem;
-  }
-  .hero-cta-group {
-    flex-direction: column;
-  }
-  .adidas-btn-primary,
-  .adidas-btn-secondary {
-    width: 100%;
-    justify-content: center;
-  }
 }

@@ -169,7 +169,7 @@
 }
 
 .receipt-checkout-btn:hover {
-  background: var(--accent);
+  background: var(--ink-secondary);
   transform: translateY(-1px);
 }
 
@@ -225,5 +225,5 @@
 }
 
 .receipt-browse-btn:hover {
-  background: var(--accent);
+  background: var(--ink-secondary);
 }

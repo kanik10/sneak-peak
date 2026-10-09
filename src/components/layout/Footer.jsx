@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Icon } from '../Icon';
 import './Footer.css';
 
 export function Footer() {
@@ -11,7 +12,7 @@ export function Footer() {
             <div className="footer-col-title">SNEAK PEAK / ATELIER ARCHIVE</div>
             <p className="footer-desc">
               Curated archive of iconic footwear silhouettes rendered in heavy paper, kraft fiber,
-              and vulcanized rubber. Designed without UI bloat—driven by pure CSS tokens,
+              and vulcanized rubber. Designed without UI bloat - driven by pure CSS tokens,
               type-safe integer math, and authentic tactile receipt styling.
             </p>
           </div>
@@ -24,6 +25,7 @@ export function Footer() {
               <li><Link to="/?cat=skate">Minimal Skate</Link></li>
               <li><Link to="/?cat=high-top">High-Top Classics</Link></li>
               <li><Link to="/?cat=collabs">Studio Collabs</Link></li>
+              <li><Link to="/wishlist">Wishlist</Link></li>
             </ul>
           </div>
 
@@ -34,13 +36,13 @@ export function Footer() {
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <a href="/?slow=1" className="footer-testing-chip">
-                ⏱️ Test Slow Network (?slow=1)
+                <><Icon name="clock" size={14} /> Test Slow Network (?slow=1)</>
               </a>
               <a href="/?error=1" className="footer-testing-chip">
-                ⚠️ Test Server Error (?error=1)
+                <><Icon name="warning" size={14} /> Test Server Error (?error=1)</>
               </a>
               <a href="/" className="footer-testing-chip">
-                ✓ Normal Mode
+                <><Icon name="check" size={14} /> Normal Mode</>
               </a>
             </div>
           </div>
@@ -51,7 +53,7 @@ export function Footer() {
             PRINTED ON RECYCLED 280GSM ARCHIVAL COTTON // TOKYO - NY - LONDON
           </div>
           <div>
-            © {new Date().getFullYear()} SNEAK PEAK. ALL RIGHTS RESERVED.
+            (C) {new Date().getFullYear()} SNEAK PEAK. ALL RIGHTS RESERVED.
           </div>
         </div>
       </div>

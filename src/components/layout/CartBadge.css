@@ -15,19 +15,35 @@
 }
 
 .cart-badge-link:hover {
-  background: var(--accent);
-  color: #fff;
+  background: var(--ink-secondary);
+  color: var(--paper);
   transform: translateY(-1px);
 }
 
 .cart-badge-icon {
+  width: 13px;
+  height: 11px;
+  position: relative;
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  border: 1.5px solid currentColor;
+  border-radius: 1px 1px 3px 3px;
+}
+
+.cart-badge-icon::before {
+  position: absolute;
+  top: -5px;
+  left: 3px;
+  width: 5px;
+  height: 5px;
+  border: 1.5px solid currentColor;
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
+  content: "";
 }
 
 .cart-badge-count {
-  background: var(--accent);
+  background: var(--hot);
   color: #ffffff;
   font-size: 0.75rem;
   font-weight: 700;

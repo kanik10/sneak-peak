@@ -1,3 +1,8 @@
+.listing-page-root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .catalog-section {
   padding-top: 1.5rem;
 }
@@ -28,7 +33,7 @@
   border: 1px solid var(--line);
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-sm);
-  color: var(--accent);
+  color: var(--ink-secondary);
   margin-bottom: 0.5rem;
 }
 

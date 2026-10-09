@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProducts } from '../context/ProductsContext';
 import { formatPrice } from '../utils/format';
+import { Icon } from './Icon';
 import './CommandPalette.css';
 
 export function CommandPalette({ isOpen, onClose }) {
@@ -73,7 +74,7 @@ export function CommandPalette({ isOpen, onClose }) {
         onKeyDown={handleKeyDown}
       >
         <div className="cmd-header">
-          <span className="cmd-icon" aria-hidden="true">🔍</span>
+          <Icon name="search" size={18} className="cmd-icon" />
           <input
             ref={inputRef}
             type="text"
@@ -118,7 +119,7 @@ export function CommandPalette({ isOpen, onClose }) {
                       <div className="cmd-item-name">{p.name}</div>
                       <div className="cmd-item-meta">
                         <span style={{ textTransform: 'capitalize' }}>{p.category}</span>
-                        <span>•</span>
+                        <span aria-hidden="true">/</span>
                         <span>Stock: {p.stock}</span>
                       </div>
                     </div>
@@ -132,8 +133,8 @@ export function CommandPalette({ isOpen, onClose }) {
 
         <div className="cmd-footer">
           <div className="cmd-hints">
-            <span>↑↓ Navigate</span>
-            <span>↵ Select</span>
+            <span><Icon name="arrow-up" size={13} /><Icon name="arrow-down" size={13} /> Navigate</span>
+            <span><Icon name="check" size={13} /> Select</span>
             <span>ESC Close</span>
           </div>
           <div>SNEAK PEAK ARCHIVE</div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from '../Icon';
 import './ErrorState.css';
 
 export function ErrorState({ message = 'Could not load products', onRetry }) {
@@ -24,14 +25,14 @@ export function ErrorState({ message = 'Could not load products', onRetry }) {
       <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
         {onRetry && (
           <button type="button" className="error-retry-btn" onClick={onRetry}>
-            <span>↻</span> Re-read Ledger (Retry)
+            <Icon name="refresh" size={16} /> Re-read Ledger (Retry)
           </button>
         )}
         {hasErrorFlag && (
           <button
             type="button"
             className="error-retry-btn"
-            style={{ background: 'var(--accent)' }}
+            style={{ background: 'var(--ink)', color: 'var(--paper)' }}
             onClick={removeErrorFlag}
           >
             Clear ?error=1 & Retry

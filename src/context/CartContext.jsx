@@ -48,7 +48,7 @@ export function CartProvider({ children }) {
     dispatch({ type: 'REMOVE', id });
 
     addToast({
-      message: `Removed "${productName}" from cart`,
+      message: `Removed "${productName}" from your receipt`,
       type: 'info',
       duration: 6000,
       action: {
@@ -56,7 +56,7 @@ export function CartProvider({ children }) {
         onClick: () => {
           dispatch({ type: 'ADD', id, qty: prevQty });
           addToast({
-            message: `Restored "${productName}"`,
+            message: `Restored "${productName}" to your receipt`,
             type: 'success',
             duration: 2500,
           });
@@ -68,7 +68,7 @@ export function CartProvider({ children }) {
   const addToCart = (id, qty = 1, productName = 'Item') => {
     dispatch({ type: 'ADD', id, qty });
     addToast({
-      message: `Added "${productName}" to cart`,
+      message: `Added "${productName}" to your receipt`,
       type: 'success',
       duration: 3000,
     });

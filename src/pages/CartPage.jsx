@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Receipt } from '../components/cart/Receipt';
+import { Icon } from '../components/Icon';
 
 export function CartPage() {
   return (
@@ -18,7 +19,7 @@ export function CartPage() {
             marginBottom: '0.5rem',
           }}
         >
-          ← Continue Browsing Sneakers
+          <Icon name="arrow-left" size={16} /> Continue Browsing Sneakers
         </Link>
       </div>
 

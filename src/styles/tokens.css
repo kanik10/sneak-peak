@@ -8,16 +8,17 @@
   --line: #d9d0bf;
   --line-subtle: #e6dfd1;
   --card: #fffdf8;
-  --accent: #c2410c;
-  --accent-hover: #9a3412;
-  --accent-surface: rgba(194, 65, 12, 0.08);
+  --accent: #ffffff;
+  --accent-hover: rgba(255, 255, 255, 0.85);
+  --accent-surface: rgba(255, 255, 255, 0.10);
+  --hot: #e11d48;
 
   /* Receipt Specific Tokens */
   --receipt-bg: #fffdf9;
   --receipt-ink: #181614;
   --receipt-line: #d8cebc;
   --receipt-red: #be123c;
-  --stamp-ink: #c2410c;
+  --stamp-ink: #ffffff;
 
   /* Typography */
   --font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -51,7 +52,7 @@
     --line: #332f28;
     --line-subtle: #292520;
     --card: #1f1c18;
-    --accent-surface: rgba(194, 65, 12, 0.18);
+    --accent-surface: rgba(255, 255, 255, 0.12);
     --receipt-bg: #221f1b;
     --receipt-ink: #f4ede1;
     --receipt-line: #3c372f;
@@ -72,7 +73,7 @@
   --line: #332f28;
   --line-subtle: #292520;
   --card: #1f1c18;
-  --accent-surface: rgba(194, 65, 12, 0.18);
+  --accent-surface: rgba(255, 255, 255, 0.12);
   --receipt-bg: #221f1b;
   --receipt-ink: #f4ede1;
   --receipt-line: #3c372f;

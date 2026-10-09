@@ -80,8 +80,8 @@
 }
 
 .empty-suggestion-chip:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--ink);
+  color: var(--ink);
   transform: translateY(-1px);
 }
 
@@ -99,6 +99,6 @@
 }
 
 .empty-clear-btn:hover {
-  background: var(--accent);
+  background: var(--ink-secondary);
   transform: translateY(-1px);
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useToast } from '../../context/ToastContext';
+import { Icon } from '../Icon';
 import './ToastViewport.css';
 
 export function ToastViewport() {
@@ -11,7 +12,10 @@ export function ToastViewport() {
     <div className="toast-viewport" role="region" aria-label="Notifications" aria-live="polite">
       {toasts.map((toast) => (
         <div key={toast.id} className={`toast-item toast-item--${toast.type}`}>
-          <div className="toast-message">{toast.message}</div>
+          <div className="toast-message">
+            {toast.type === 'success' && <Icon name="check" size={16} />}
+            <span className="toast-message-text">{toast.message}</span>
+          </div>
           <div className="toast-actions">
             {toast.action && (
               <button
@@ -31,7 +35,7 @@ export function ToastViewport() {
               onClick={() => removeToast(toast.id)}
               aria-label="Dismiss notification"
             >
-              ×
+              <Icon name="close" size={16} />
             </button>
           </div>
         </div>

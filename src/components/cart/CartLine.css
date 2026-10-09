@@ -30,7 +30,7 @@
 }
 
 .cart-line-title a:hover {
-  color: var(--accent);
+  color: var(--ink-secondary);
 }
 
 .cart-line-meta {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CartBadge } from './CartBadge';
 import { AnnouncementBar } from './AnnouncementBar';
+import { Icon } from '../Icon';
 import './Header.css';
 
 const NAV_LINKS = [
@@ -9,7 +10,8 @@ const NAV_LINKS = [
   { label: 'TECH RUNNERS', path: '/?cat=runners' },
   { label: 'MINIMAL SKATE', path: '/?cat=skate' },
   { label: 'HIGH-TOPS', path: '/?cat=high-top' },
-  { label: 'STUDIO COLLABS', path: '/?cat=collabs', highlight: true },
+  { label: 'COLLABS', path: '/?cat=collabs', highlight: true },
+  { label: 'ALL DROPS', path: '/?cat=all' },
 ];
 
 export function Header({ onOpenCommandPalette }) {
@@ -28,10 +30,7 @@ export function Header({ onOpenCommandPalette }) {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((curr) => {
-      if (curr === 'dark') return 'light';
-      return 'dark';
-    });
+    setTheme((curr) => (curr === 'dark' ? 'light' : 'dark'));
   };
 
   return (
@@ -41,16 +40,19 @@ export function Header({ onOpenCommandPalette }) {
         <div className="container">
           <div className="header-main-row">
             <div className="brand-group">
-              <span className="brand-stamp">№ 77</span>
+              <span className="brand-mark" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </span>
               <Link to="/" className="brand-link" id="brand-logo-link">
                 <span className="brand-title">
                   SNEAK <span className="brand-accent">PEAK</span>
                 </span>
-                <span className="brand-tagline">Paper & Rubber Sneaker Archive</span>
+                <span className="brand-tagline">Paper &amp; Rubber Sneaker Archive</span>
               </Link>
             </div>
 
-            {/* Adidas-style Main Category Navigation */}
             <nav aria-label="Main category navigation">
               <ul className="header-category-nav">
                 {NAV_LINKS.map((link) => {
@@ -74,13 +76,15 @@ export function Header({ onOpenCommandPalette }) {
                 type="button"
                 className="command-trigger-btn"
                 onClick={onOpenCommandPalette}
-                title="Search archive (Ctrl+K or ⌘K)"
+                title="Search archive (Ctrl+K or Cmd+K)"
                 aria-label="Open command search"
                 id="command-trigger-btn"
               >
-                <span>🔍</span>
-                <span className="command-label">Search archive</span>
-                <kbd className="command-shortcut">⌘K</kbd>
+                <svg className="search-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                  <circle cx="8.5" cy="8.5" r="5.5" />
+                  <path d="m12.5 12.5 4 4" />
+                </svg>
+                <span className="command-label">Search</span>
               </button>
 
               <button
@@ -91,21 +95,24 @@ export function Header({ onOpenCommandPalette }) {
                 title="Toggle Light/Dark Theme"
                 id="theme-toggle-btn"
               >
-                {theme === 'dark' ? '☀️' : '🌙'}
+                <Icon name={theme === 'dark' ? 'sun' : 'moon'} size={16} />
               </button>
+
+              <Link to="/wishlist" className="wishlist-header-link" aria-label="Open wishlist" title="Wishlist">
+                <Icon name="heart" size={16} />
+                <span>Wishlist</span>
+              </Link>
 
               <CartBadge />
             </div>
           </div>
 
-          {/* Subnav strip on mobile / tablet */}
           <div className="header-subnav-strip" aria-label="Mobile category navigation">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
                 to={link.path}
                 className={`header-nav-link ${link.highlight ? 'highlight' : ''}`}
-                style={{ fontSize: '0.75rem', whiteSpace: 'nowrap' }}
               >
                 {link.label}
               </Link>

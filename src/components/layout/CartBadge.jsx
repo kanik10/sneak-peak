@@ -8,7 +8,7 @@ export function CartBadge() {
   const [bump, setBump] = useState(false);
 
   useEffect(() => {
-    if (itemCount === 0) return;
+    if (itemCount === 0) return undefined;
     setBump(true);
     const timer = setTimeout(() => setBump(false), 300);
     return () => clearTimeout(timer);
@@ -21,7 +21,7 @@ export function CartBadge() {
       aria-label={`Cart with ${itemCount} items`}
       id="cart-badge-button"
     >
-      <span className="cart-badge-icon" aria-hidden="true">🧾</span>
+      <span className="cart-badge-icon" aria-hidden="true" />
       <span className="cart-badge-label">RECEIPT</span>
       <span
         className={`cart-badge-count ${bump ? 'bump' : ''}`}

@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useProducts } from '../context/ProductsContext';
 import { useProductFilters } from '../hooks/useProductFilters';
 import { filterProducts } from '../utils/filterProducts';
@@ -13,11 +14,13 @@ import { RecentlyViewed } from '../components/product/RecentlyViewed';
 import { HeroSection } from '../components/home/HeroSection';
 import { TrendingStrip } from '../components/home/TrendingStrip';
 import { FeaturedStories } from '../components/home/FeaturedStories';
+import { Icon } from '../components/Icon';
 import './ListingPage.css';
 
 export function ListingPage() {
   const { products, status, error, retry } = useProducts();
   const { filters, update, clear } = useProductFilters();
+  const location = useLocation();
   const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false);
   const catalogRef = useRef(null);
 
@@ -54,28 +57,29 @@ export function ListingPage() {
 
   const isLoading = status === 'loading';
   const hasActiveFilters = Boolean(filters.q || (filters.cat && filters.cat !== 'all') || (filters.sort && filters.sort !== 'featured'));
+  const isHeaderCatalogView = new URLSearchParams(location.search).has('cat');
+  const shouldShowCatalogOnly = hasActiveFilters || isHeaderCatalogView;
 
   return (
-    <div className="container">
-      {/* Adidas-inspired Start of Page: Hero Section */}
-      <HeroSection
-        featuredProduct={products[0]}
-        onExploreClick={scrollToCatalog}
-      />
+    <div className="listing-page-root">
+      {/* Fullscreen Hero — sits outside the container so it's edge-to-edge */}
+      {!shouldShowCatalogOnly && <HeroSection onExploreClick={scrollToCatalog} />}
 
-      {/* Adidas-inspired "Popular Right Now" Trending Strip */}
-      <TrendingStrip onSelectTag={handleSelectTrendingTag} />
+      {/* Trending strip runs full-bleed beneath the hero */}
+      {!shouldShowCatalogOnly && <TrendingStrip onSelectTag={handleSelectTrendingTag} />}
 
-      {/* Adidas-inspired "What's Hot / Archive Drops" Editorial Stories */}
-      <FeaturedStories />
+      {/* Rest of page uses the centered container */}
+      <div className="container">
+        {/* "What's Hot / Archive Drops" Editorial Stories */}
+        {!shouldShowCatalogOnly && <FeaturedStories />}
 
-      {/* Catalog & Filter Section */}
-      <section
-        id="archive-catalog"
-        ref={catalogRef}
-        className="catalog-section"
-        aria-label="Sneaker catalog"
-      >
+        {/* Catalog & Filter Section */}
+        <section
+          id="archive-catalog"
+          ref={catalogRef}
+          className="catalog-section"
+          aria-label="Sneaker catalog"
+        >
         <header className="listing-catalog-header">
           <div className="catalog-header-text">
             <span className="listing-hero-badge">CATALOG // '77—'26</span>
@@ -92,7 +96,7 @@ export function ListingPage() {
               onClick={clear}
               title="Reset all active filters"
             >
-              <span>✕</span> Reset Active Filters
+              <Icon name="close" size={14} /> Reset Active Filters
             </button>
           )}
         </header>
@@ -134,7 +138,7 @@ export function ListingPage() {
             onClick={() => setIsFilterSheetOpen(true)}
             aria-label="Open filter options"
           >
-            <span>⚙️</span>
+            <Icon name="filter" size={16} />
             <span>Filters</span>
           </button>
         </div>
@@ -169,7 +173,8 @@ export function ListingPage() {
         ) : (
           <ProductGrid products={filteredProducts} />
         )}
-      </section>
+        </section>
+      </div>
 
       {/* Recently Viewed Drawer */}
       <RecentlyViewed />

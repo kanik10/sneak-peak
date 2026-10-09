@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useRecentlyViewed } from '../../hooks/useRecentlyViewed';
 import { useProducts } from '../../context/ProductsContext';
 import { formatPrice } from '../../utils/format';
+import { Icon } from '../Icon';
 import './RecentlyViewed.css';
 
 export function RecentlyViewed({ currentId = null }) {
@@ -22,7 +23,7 @@ export function RecentlyViewed({ currentId = null }) {
     <section className="recently-viewed-section" aria-label="Recently viewed sneakers">
       <div className="recently-viewed-header">
         <h3 className="recently-viewed-title">
-          <span>📜</span> Recent Archival Views
+          <Icon name="history" size={18} /> Recent Archival Views
         </h3>
         <span className="font-mono text-muted" style={{ fontSize: '0.8rem' }}>
           {recentProducts.length} recorded

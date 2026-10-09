@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
+import { Icon } from '../Icon';
 import './SearchBar.css';
 
 export function SearchBar({ value, onChange, placeholder = 'Search sneakers by model, material, or keyword...' }) {
@@ -25,7 +26,7 @@ export function SearchBar({ value, onChange, placeholder = 'Search sneakers by m
 
   return (
     <div className="search-bar-wrap">
-      <span className="search-icon-leading" aria-hidden="true">🔍</span>
+      <Icon name="search" size={17} className="search-icon-leading" />
       <input
         type="search"
         className="search-input-field"
@@ -42,7 +43,7 @@ export function SearchBar({ value, onChange, placeholder = 'Search sneakers by m
           onClick={handleClear}
           aria-label="Clear search input"
         >
-          ×
+          <Icon name="close" size={16} />
         </button>
       )}
     </div>

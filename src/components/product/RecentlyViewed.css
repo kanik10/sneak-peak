@@ -1,6 +1,8 @@
 .recently-viewed-section {
-  margin-top: 4rem;
-  padding-top: 2.5rem;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 4rem auto 0;
+  padding: 2.5rem 2rem 0;
   border-top: 2px dashed var(--line);
 }
 
@@ -22,7 +24,8 @@
 
 .recently-viewed-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 250px));
+  justify-content: start;
   gap: 1.25rem;
 }
 
@@ -65,4 +68,15 @@
   font-weight: 700;
   color: var(--ink);
   margin-top: auto;
+}
+
+@media (max-width: 767px) {
+  .recently-viewed-section {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .recently-viewed-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
 }

@@ -42,7 +42,7 @@ export function Receipt() {
   const handleCheckout = () => {
     setIsOrdered(true);
     addToast({
-      message: '✓ Archival order recorded! Physical receipt printed.',
+      message: 'Archival order recorded! Physical receipt printed.',
       type: 'success',
       duration: 5000,
     });
@@ -67,7 +67,7 @@ export function Receipt() {
         <header className="receipt-header">
           <div className="receipt-brand">SNEAK PEAK</div>
           <div className="receipt-sub">ARCHIVAL FOOTWEAR & LEATHER GOODS</div>
-          <div className="receipt-sub">EST. 1977 • TOKYO / BROOKLYN</div>
+          <div className="receipt-sub">EST. 1977 / TOKYO / BROOKLYN</div>
 
           <div className="receipt-meta">
             <span>TXN: #SKP-{Math.abs(subtotal % 99999).toString().padStart(5, '0')}</span>

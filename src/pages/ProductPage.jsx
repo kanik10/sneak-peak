@@ -8,6 +8,7 @@ import { RatingStars } from '../components/product/RatingStars';
 import { QuantityStepper } from '../components/cart/QuantityStepper';
 import { RecentlyViewed } from '../components/product/RecentlyViewed';
 import { NotFoundPage } from './NotFoundPage';
+import { Icon } from '../components/Icon';
 import './ProductPage.css';
 
 export function ProductPage() {
@@ -50,7 +51,7 @@ export function ProductPage() {
     >
       <nav className="product-back-nav" aria-label="Breadcrumb">
         <Link to="/" className="back-link">
-          <span>←</span> Return to Archive Index
+          <Icon name="arrow-left" size={16} /> Return to Archive Index
         </Link>
       </nav>
 
@@ -80,7 +81,7 @@ export function ProductPage() {
           <div className="product-price-tag">
             <span>{formatPrice(product.price)}</span>
             <span className={`product-stock-tag ${isScarce ? 'scarce' : ''}`}>
-              {product.stock === 1 ? '⚠️ Only 1 remaining!' : `${product.stock} in inventory`}
+              {product.stock === 1 ? <><Icon name="warning" size={14} /> Only 1 remaining!</> : `${product.stock} in inventory`}
             </span>
           </div>
 
@@ -102,7 +103,7 @@ export function ProductPage() {
               onClick={() => addToCart(product.id, qty, product.name)}
               id="add-to-cart-detail-btn"
             >
-              Add {qty > 1 ? `(${qty})` : ''} to Receipt • {formatPrice(product.price * qty)}
+              Add {qty > 1 ? `(${qty})` : ''} to Receipt / {formatPrice(product.price * qty)}
             </button>
           </div>
 

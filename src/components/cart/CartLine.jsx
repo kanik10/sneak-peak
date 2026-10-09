@@ -33,7 +33,7 @@ export function CartLine({ item }) {
         </h4>
         <div className="cart-line-meta">
           <span>{formatPrice(product.price)} ea</span>
-          <span>•</span>
+          <span aria-hidden="true">/</span>
           <span style={{ textTransform: 'uppercase' }}>{product.category}</span>
         </div>
       </div>

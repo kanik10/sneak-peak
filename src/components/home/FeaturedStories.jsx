@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Icon } from '../Icon';
 import './FeaturedStories.css';
 
 const STORIES = [
@@ -7,7 +8,7 @@ const STORIES = [
     kicker: "LIMITED COLLAB",
     title: "Deconstructed Blueprint Series",
     desc: "Drafting vellum overlays, exposed foam, and cyanotype coordinate typography.",
-    image: "/images/deconstructed-blueprint-special-edition.svg",
+    image: "/images/deconstructed-blueprint-special-edition.jpg",
     link: "/product/deconstructed-blueprint-special-edition",
     cta: "DISCOVER THE COLLAB",
   },
@@ -15,7 +16,7 @@ const STORIES = [
     kicker: "ALL-TERRAIN",
     title: "Tokyo Vibram Tech Runners",
     desc: "Japanese washi-paper ripstop mesh engineered with Megagrip traction soles.",
-    image: "/images/tokyo-parchment-runner.svg",
+    image: "/images/tokyo-parchment-runner.jpg",
     link: "/?cat=runners",
     cta: "EXPLORE RUNNERS",
   },
@@ -23,7 +24,7 @@ const STORIES = [
     kicker: "HERITAGE '84",
     title: "Hardwood Leather Originals",
     desc: "Aged cream midsoles and heavy full-grain leather for timeless court posture.",
-    image: "/images/vintage-leather-hardwood-84.svg",
+    image: "/images/vintage-leather-hardwood-84.jpg",
     link: "/?cat=retro",
     cta: "SHOP COURT CLASSICS",
   },
@@ -49,7 +50,7 @@ export function FeaturedStories() {
               <p className="story-card-desc">{story.desc}</p>
               <span className="story-card-cta">
                 <span>{story.cta}</span>
-                <span aria-hidden="true">→</span>
+                <Icon name="arrow-right" size={16} />
               </span>
             </div>
           </Link>

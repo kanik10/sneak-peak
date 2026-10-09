@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Icon } from '../Icon';
 import './AnnouncementBar.css';
 
 const MESSAGES = [
-  { text: "FREE ARCHIVAL SHIPPING ON ORDERS OVER $150 // WORLDWIDE DISPATCH", link: "/?sort=price-desc" },
-  { text: "LIMITED COLLAB DROP: ONLY 1 PAIR LEFT OF BLUEPRINT ATELIER", link: "/product/deconstructed-blueprint-special-edition" },
-  { text: "SIGN UP & RECEIVE 10% OFF YOUR FIRST RECEIPT • CODE: ARCHIVE77", link: "/?cat=collabs" },
-  { text: "PRINTED RECEIPT & NUMBERED CERTIFICATE WITH EVERY ORDER", link: "/cart" },
+  { text: 'FREE ARCHIVAL SHIPPING ON ORDERS OVER $150 // WORLDWIDE DISPATCH', link: '/?sort=price-desc' },
+  { text: 'LIMITED COLLAB DROP: ONLY 1 PAIR LEFT OF BLUEPRINT ATELIER', link: '/product/deconstructed-blueprint-special-edition' },
+  { text: 'SIGN UP & RECEIVE 10% OFF YOUR FIRST RECEIPT - CODE: ARCHIVE77', link: '/?cat=collabs' },
+  { text: 'PRINTED RECEIPT & NUMBERED CERTIFICATE WITH EVERY ORDER', link: '/cart' },
 ];
 
 export function AnnouncementBar() {
@@ -19,14 +20,6 @@ export function AnnouncementBar() {
     return () => clearInterval(timer);
   }, []);
 
-  const handlePrev = () => {
-    setIndex((prev) => (prev - 1 + MESSAGES.length) % MESSAGES.length);
-  };
-
-  const handleNext = () => {
-    setIndex((prev) => (prev + 1) % MESSAGES.length);
-  };
-
   const current = MESSAGES[index];
 
   return (
@@ -35,10 +28,10 @@ export function AnnouncementBar() {
         <button
           type="button"
           className="announcement-nav-btn"
-          onClick={handlePrev}
+          onClick={() => setIndex((prev) => (prev - 1 + MESSAGES.length) % MESSAGES.length)}
           aria-label="Previous announcement"
         >
-          ‹
+          <Icon name="chevron-left" size={14} />
         </button>
 
         <span className="announcement-text">
@@ -48,10 +41,10 @@ export function AnnouncementBar() {
         <button
           type="button"
           className="announcement-nav-btn"
-          onClick={handleNext}
+          onClick={() => setIndex((prev) => (prev + 1) % MESSAGES.length)}
           aria-label="Next announcement"
         >
-          ›
+          <Icon name="chevron-right" size={14} />
         </button>
       </div>
     </div>

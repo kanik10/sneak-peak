@@ -1,6 +1,7 @@
 import React from 'react';
 import { CategoryChips } from './CategoryChips';
 import { SortSelect } from './SortSelect';
+import { Icon } from '../Icon';
 import './FilterSheet.css';
 
 export function FilterSheet({
@@ -32,7 +33,7 @@ export function FilterSheet({
             onClick={onClose}
             aria-label="Close filters"
           >
-            ×
+            <Icon name="close" size={18} />
           </button>
         </div>
 

@@ -133,7 +133,7 @@
 }
 
 .story-card:hover .story-card-cta {
-  color: var(--accent);
-  border-color: var(--accent);
+  color: var(--ink);
+  border-color: var(--ink);
   gap: 0.65rem;
 }

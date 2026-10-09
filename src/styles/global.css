@@ -51,7 +51,7 @@ img, svg {
 
 /* Accessibility Focus Ring */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
@@ -79,7 +79,7 @@ img, svg {
 }
 
 .text-accent {
-  color: var(--accent);
+  color: var(--ink-secondary);
 }
 
 .text-muted {

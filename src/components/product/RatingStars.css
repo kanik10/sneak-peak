@@ -9,8 +9,12 @@
 
 .rating-stars-icons {
   color: #d97706; /* warm amber ink */
-  font-size: 0.85rem;
-  letter-spacing: -1px;
+  display: inline-flex;
+  gap: 0.1rem;
+}
+
+.rating-stars-icons .rating-star-empty {
+  fill: none;
 }
 
 .rating-score {
